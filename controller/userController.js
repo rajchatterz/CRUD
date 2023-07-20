@@ -9,9 +9,27 @@ const create = async(req,res,next)=>{
         data:userInfo
     })
     } catch (error) {
-        console.error("Error found while fetching the data",error);
+        res.status(400).json({
+            success:false,
+            message:"Bad message"
+        })
+    }
+}
+const read = async(req,res,next)=>{
+    try {
+        const userdata = await productSchema.find({name:"YASH"});
+        res.status(200).json({
+            success:true,
+            message:userdata
+        })
+        return 
+    } catch (error) {
+        return res.status(400).json({
+            message:false
+        })
     }
 }
 module.exports={
-    create
+    create,
+    read
 }
