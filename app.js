@@ -2,6 +2,7 @@ require('dotenv').config()
 const express = require('express')
 const app = express()
 // import the router
+const router = require('./route/userRoute')
 // init database
 const connectingDb = require('./config/dbconnection')
 
@@ -9,7 +10,7 @@ const connectingDb = require('./config/dbconnection')
 connectingDb()
 app.use(express.json())
 
-
+app.use('/api',router)
 
 app.get('/',(req,res)=>{
     res.send("HEy node api")
