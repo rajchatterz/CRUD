@@ -51,8 +51,27 @@ const update =async (req,res,next)=>{
         })
     }
 }
+const remove = async(req,res)=>{
+    try {
+        const {id} = req.params
+        const product = productSchema.findByIdAndDelete(id)
+        if(!product){
+            return res.status(400).json({
+                success:false,
+                message:"cannot find the data"
+            })
+        }
+        res.status(200).json({
+            success:true,
+            message:"delete it successfully"
+        })
+    } catch (error) {
+        
+    }
+}
 module.exports={
     create,
     read,
-    update
+    update,
+    remove
 }
